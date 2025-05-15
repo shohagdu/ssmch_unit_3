@@ -76,6 +76,12 @@ return new class extends Migration
             $table->text('operative_findings')->nullable();
             $table->date('date_of_death')->nullable(); // Made nullable
             $table->text('causes_death')->nullable();
+
+            $table->string('created_ip', 15)->nullable();
+            $table->integer('created_by')->nullable();
+            $table->integer('updated_by')->nullable();
+            $table->string('updated_ip', 15)->nullable();
+
             $table->timestamps();
 
             // Optional: Add foreign key constraints if applicable
