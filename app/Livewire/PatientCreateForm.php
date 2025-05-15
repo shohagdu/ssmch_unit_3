@@ -19,7 +19,7 @@ class PatientCreateForm extends Component
         'occupation' => '',
         'education_status' => '',
         'monthly_income' => '',
-        'contact_number' => '',
+        'pt_contact_number' => '',
         'blood_group' => '',
         'hospital_reg_no' => '',
         'unit' => '',
@@ -86,7 +86,7 @@ class PatientCreateForm extends Component
 //            'form.occupation' => 'required|integer',
 //            'form.education_status' => 'required|integer',
 //            'form.monthly_income' => 'required|integer',
-//            'form.contact_number' => 'required|string|max:50',
+//            'form.pt_contact_number' => 'required|string|max:50',
 //            'form.blood_group' => 'required|string|max:10',
 //            'form.hospital_reg_no' => 'required|string|max:50',
 //            'form.unit' => 'required|integer|min:0|max:255',
@@ -145,6 +145,12 @@ class PatientCreateForm extends Component
 
         session()->flash('message', 'Patient information saved successfully!');
         return redirect()->route('patient.list');
+    }
+    public $currentTab = 'personal'; // Default tab
+
+    public function switchTab($tab)
+    {
+        $this->currentTab = $tab;
     }
 
     public function render()
