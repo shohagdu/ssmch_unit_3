@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Livewire\Posts;
+use App\Livewire\PatientInfo;
+use App\Livewire\PatientCreateForm;
 
 Route::get('/', function () {
 //    return view('welcome');
@@ -19,3 +21,5 @@ Route::middleware([
     })->name('dashboard');
 });
 Route::get('posts', Posts::class)->middleware('auth');
+Route::get('patient_infos', PatientInfo::class)->middleware('auth')->name('patient.list');
+Route::get('/patient/create', PatientCreateForm::class)->middleware(['auth'])->name('patient.create');
