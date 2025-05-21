@@ -16,6 +16,11 @@ return new class extends Migration
             $table->text('clinical_features')->nullable();
             $table->text('investigation')->nullable();
             $table->text('followup_description')->nullable();
+            $table->string('created_ip', 15)->nullable();
+            $table->integer('created_by')->nullable();
+            $table->integer('updated_by')->nullable();
+            $table->string('updated_ip', 15)->nullable();
+
             $table->timestamps();
         });
     }
