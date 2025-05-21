@@ -41,74 +41,71 @@
             </div>
 
             <!-- Form with Tab Content -->
-            <form wire:submit.prevent="submit" class="space-y-6">
+
                 <!-- Personal Information Tab -->
                 @if($currentTab === 'personal')
-                    <div class="border-b pb-4">
-                        <h3 class="text-lg font-semibold mb-4">Personal Information</h3>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div>
-                                <label for="patient_id" class="block text-sm font-medium text-gray-700">Patient ID</label>
-                                <input type="number" id="patient_id" wire:model.debounce.500ms="form.patient_id" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                                @error('form.patient_id') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                    <form wire:submit.prevent="submit" class="space-y-6">
+                        <div class="border-b pb-4">
+                            <h3 class="text-lg font-semibold mb-4">Personal Information</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                                    <input type="text" id="name" wire:model.debounce.500ms="form.name" placeholder="Enter Patient Name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                                    @error('form.name') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                </div>
+                                <div>
+                                    <label for="age" class="block text-sm font-medium text-gray-700">Age</label>
+                                    <input type="number" id="age" wire:model.debounce.500ms="form.age" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                                    @error('form.age') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                </div>
+                                <div>
+                                    <label for="gender" class="block text-sm font-medium text-gray-700">Gender</label>
+                                    <select id="gender" wire:model="form.gender" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                                        <option value="">Select Gender</option>
+                                        <option value="1">Male</option>
+                                        <option value="2">Female</option>
+                                        <option value="3">Other</option>
+                                    </select>
+                                    @error('form.gender') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                </div>
+                                <div>
+                                    <label for="district_id" class="block text-sm font-medium text-gray-700">District ID</label>
+                                    <input type="number" id="district_id" wire:model.debounce.500ms="form.district_id" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                                    @error('form.district_id') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                </div>
+                                <div>
+                                    <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
+                                    <textarea id="address" wire:model.debounce.500ms="form.address" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"></textarea>
+                                    @error('form.address') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                </div>
+                                <div>
+                                    <label for="religion" class="block text-sm font-medium text-gray-700">Religion</label>
+                                    <input type="number" id="religion" wire:model.debounce.500ms="form.religion" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                                    @error('form.religion') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                </div>
+                                <div>
+                                    <label for="occupation" class="block text-sm font-medium text-gray-700">Occupation</label>
+                                    <input type="number" id="occupation" wire:model.debounce.500ms="form.occupation" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                                    @error('form.occupation') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                </div>
+                                <div>
+                                    <label for="education_status" class="block text-sm font-medium text-gray-700">Education Status</label>
+                                    <input type="number" id="education_status" wire:model.debounce.500ms="form.education_status" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                                    @error('form.education_status') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                </div>
+                                <div>
+                                    <label for="monthly_income" class="block text-sm font-medium text-gray-700">Monthly Income</label>
+                                    <input type="number" id="monthly_income" wire:model.debounce.500ms="form.monthly_income" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                                    @error('form.monthly_income') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                </div>
                             </div>
-                            <div>
-                                <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-                                <input type="text" id="name" wire:model.debounce.500ms="form.name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                                @error('form.name') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
-                            </div>
-                            <div>
-                                <label for="age" class="block text-sm font-medium text-gray-700">Age</label>
-                                <input type="number" id="age" wire:model.debounce.500ms="form.age" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                                @error('form.age') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
-                            </div>
-                            <div>
-                                <label for="gender" class="block text-sm font-medium text-gray-700">Gender</label>
-                                <select id="gender" wire:model="form.gender" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                                    <option value="">Select Gender</option>
-                                    <option value="1">Male</option>
-                                    <option value="2">Female</option>
-                                    <option value="3">Other</option>
-                                </select>
-                                @error('form.gender') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
-                            </div>
-                            <div>
-                                <label for="district_id" class="block text-sm font-medium text-gray-700">District ID</label>
-                                <input type="number" id="district_id" wire:model.debounce.500ms="form.district_id" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                                @error('form.district_id') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
-                            </div>
-                            <div>
-                                <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
-                                <textarea id="address" wire:model.debounce.500ms="form.address" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"></textarea>
-                                @error('form.address') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
-                            </div>
-                            <div>
-                                <label for="religion" class="block text-sm font-medium text-gray-700">Religion</label>
-                                <input type="number" id="religion" wire:model.debounce.500ms="form.religion" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                                @error('form.religion') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
-                            </div>
-                            <div>
-                                <label for="occupation" class="block text-sm font-medium text-gray-700">Occupation</label>
-                                <input type="number" id="occupation" wire:model.debounce.500ms="form.occupation" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                                @error('form.occupation') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
-                            </div>
-                            <div>
-                                <label for="education_status" class="block text-sm font-medium text-gray-700">Education Status</label>
-                                <input type="number" id="education_status" wire:model.debounce.500ms="form.education_status" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                                @error('form.education_status') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
-                            </div>
-                            <div>
-                                <label for="monthly_income" class="block text-sm font-medium text-gray-700">Monthly Income</label>
-                                <input type="number" id="monthly_income" wire:model.debounce.500ms="form.monthly_income" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                                @error('form.monthly_income') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                            <!-- Submit and Cancel Buttons -->
+                            <div class="flex justify-end space-x-4 mt-6">
+                                <a href="{{ route('patient.list') }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">Cancel</a>
+                                <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">Submit (Personal)</button>
                             </div>
                         </div>
-                        <!-- Submit and Cancel Buttons -->
-                        <div class="flex justify-end space-x-4 mt-6">
-                            <a href="{{ route('patient.list') }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">Cancel</a>
-                            <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">Submit</button>
-                        </div>
-                    </div>
+                    </form>
                 @endif
 
                 <!-- Contact Details Tab -->
@@ -454,7 +451,7 @@
                         </div>
                     </div>
                 @endif
-            </form>
+
         </div>
     </div>
 </div>
