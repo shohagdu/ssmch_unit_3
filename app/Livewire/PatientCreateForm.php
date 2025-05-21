@@ -147,6 +147,25 @@ class PatientCreateForm extends Component
         session()->flash('message', 'Patient information saved successfully!');
         return redirect()->route('patient.list');
     }
+    public function submitHospital()
+    {
+        $this->validate([
+            'form.hospital_reg_no' => 'required|string|max:50',
+            'form.unit' => 'required|integer|min:0|max:255',
+            'form.ward_no' => 'required|string|max:50',
+            'form.bed_no' => 'required|string|max:50',
+            'form.admission_date' => 'required|date',
+            'form.discharge_date' => 'nullable|date',
+        ]);
+
+
+        Patient::create($this->form);
+
+        session()->flash('message', 'Patient information saved successfully!');
+        return redirect()->route('patient.list');
+    }
+
+
     public $currentTab = 'personal'; // Default tab
 
     public function switchTab($tab)
