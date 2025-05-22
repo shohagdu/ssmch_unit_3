@@ -11,9 +11,9 @@ class Patient extends Model
     protected $table = "patient_info";
     protected $fillable = [
         'patient_id', 'name', 'age', 'gender', 'district_id',
-//        'address', 'religion',
-//        'occupation', 'education_status', 'monthly_income', 'pt_contact_number', 'blood_group',
-//        'hospital_reg_no', 'unit', 'ward_no', 'bed_no', 'admission_date', 'discharge_date',
+        'address', 'religion',
+        'occupation', 'education_status', 'monthly_income', 'pt_contact_number', 'blood_group',
+        'hospital_reg_no', 'unit', 'ward_no', 'bed_no', 'admission_date', 'discharge_date','created_by','created_ip'
 //        'diagnosis', 'present_illness', 'past_illness', 'comorbidities', 'family_history',
 //        'drug_history', 'previous_drug_history', 'clinical_findings', 'cbc_result',
 //        's_electrolytes', 's_creatinine', 's_urea', 'lft', 's_bilirubin', 'sgpt', 'sgot',

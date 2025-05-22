@@ -62,6 +62,7 @@ class DistrictSeeder extends Seeder
                 DB::table('districts')->insert([
                     'name' => $district,
                     'division_id' => $divisionId,
+                    'is_active' => 1,
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
