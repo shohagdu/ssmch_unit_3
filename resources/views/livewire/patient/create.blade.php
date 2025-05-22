@@ -25,10 +25,10 @@
                     @foreach([
                         ['id' => 'personal', 'label' => 'Personal Information'],
                         ['id' => 'hospital', 'label' => 'Hospital Information'],
-                        ['id' => 'medical', 'label' => 'Medical History'],
-                        ['id' => 'diagnostic', 'label' => 'Diagnostic Tests'],
-                        ['id' => 'surgical', 'label' => 'Surgical Information'],
-                        ['id' => 'outcome', 'label' => 'Outcome'],
+                        ['id' => 'medical', 'label' => 'Patient Disease'],
+                        ['id' => 'diagnostic', 'label' => 'Investigation'],
+                        ['id' => 'surgical', 'label' => 'Treatment Information'],
+                        ['id' => 'outcome', 'label' => 'Follow up'],
                     ] as $tab)
                         <li class="-mb-px mr-1">
                             <button
@@ -166,32 +166,35 @@
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
                                     <label for="hospital_reg_no" class="block text-sm font-medium text-gray-700">Hospital Registration No</label>
-                                    <input type="text" id="hospital_reg_no" wire:model.debounce.500ms="form.hospital_reg_no" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                                    <input type="text" placeholder="Enter Hospital Registration No" id="hospital_reg_no" wire:model.debounce.500ms="form.hospital_reg_no" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                                     @error('form.hospital_reg_no') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
                                 </div>
                                 <div>
-                                    <label for="unit" class="block text-sm font-medium text-gray-700">Unit</label>
-                                    <input type="number" id="unit" wire:model.debounce.500ms="form.unit" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                                    @error('form.unit') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                    <label for="diagnosis" class="block text-sm font-medium text-gray-700">Diagnosis</label>
+                                    <select id="diagnosis"  wire:model="form.diagnosis" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                                        <option value="">Select Diagnosis</option>
+                                    </select>
+
+                                    @error('form.diagnosis') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
                                 </div>
                                 <div>
                                     <label for="ward_no" class="block text-sm font-medium text-gray-700">Ward No</label>
-                                    <input type="text" id="ward_no" wire:model.debounce.500ms="form.ward_no" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                                    <input type="text" id="ward_no" placeholder="Enter Ward No" wire:model.debounce.500ms="form.ward_no" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                                     @error('form.ward_no') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
                                 </div>
                                 <div>
                                     <label for="bed_no" class="block text-sm font-medium text-gray-700">Bed No</label>
-                                    <input type="text" id="bed_no" wire:model.debounce.500ms="form.bed_no" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                                    <input type="text" id="bed_no" placeholder="Enter Bed No" wire:model.debounce.500ms="form.bed_no" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                                     @error('form.bed_no') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
                                 </div>
                                 <div>
                                     <label for="admission_date" class="block text-sm font-medium text-gray-700">Admission Date</label>
-                                    <input type="date" id="admission_date" wire:model.debounce.500ms="form.admission_date" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                                    <input type="date" id="admission_date"  wire:model.debounce.500ms="form.admission_date" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" >
                                     @error('form.admission_date') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
                                 </div>
                                 <div>
                                     <label for="discharge_date" class="block text-sm font-medium text-gray-700">Discharge Date</label>
-                                    <input type="date" id="discharge_date" wire:model.debounce.500ms="form.discharge_date" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                                    <input type="date"  id="discharge_date" wire:model.debounce.500ms="form.discharge_date" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                                     @error('form.discharge_date') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
                                 </div>
                             </div>
@@ -207,53 +210,57 @@
                 <!-- Medical History Tab -->
                 @if($currentTab === 'medical')
                     <div class="border-b pb-4">
-                        <h3 class="text-lg font-semibold mb-4">Medical History</h3>
+                        <h3 class="text-lg font-semibold mb-4">Patient Disease Information</h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                             <div>
-                                <label for="diagnosis" class="block text-sm font-medium text-gray-700">Diagnosis</label>
-                                <input type="number" id="diagnosis" wire:model.debounce.500ms="form.diagnosis" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
-                                @error('form.diagnosis') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                <label for="diagnosis" class="block text-sm font-medium text-gray-700">Chief Complaints</label>
+                                <select id="chief_complaints"  wire:model="form.chief_complaints" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                                    <option value="">Select Diagnosis</option>
+                                </select>
+
+                                @error('form.chief_complaints') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
                             </div>
                             <div>
-                                <label for="present_illness" class="block text-sm font-medium text-gray-700">Present Illness</label>
-                                <input type="text" id="present_illness" wire:model.debounce.500ms="form.present_illness" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                                <label for="present_illness" class="block text-sm font-medium text-gray-700">H/O Present illness:</label>
+                                <input type="text" placeholder="H/O Present illness" id="present_illness" wire:model.debounce.500ms="form.present_illness" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                                 @error('form.present_illness') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
                             </div>
                             <div>
-                                <label for="past_illness" class="block text-sm font-medium text-gray-700">Past Illness</label>
-                                <input type="text" id="past_illness" wire:model.debounce.500ms="form.past_illness" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                                <label for="past_illness" class="block text-sm font-medium text-gray-700">H/O Past Illness</label>
+                                <input type="text" placeholder="H/O Past Illness" id="past_illness" wire:model.debounce.500ms="form.past_illness" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                                 @error('form.past_illness') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
                             </div>
                             <div>
                                 <label for="comorbidities" class="block text-sm font-medium text-gray-700">Comorbidities</label>
-                                <input type="text" id="comorbidities" wire:model.debounce.500ms="form.comorbidities" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                                <input type="text" placeholder="Comorbidities" id="comorbidities" wire:model.debounce.500ms="form.comorbidities" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                                 @error('form.comorbidities') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
                             </div>
                             <div>
                                 <label for="family_history" class="block text-sm font-medium text-gray-700">Family History</label>
-                                <textarea id="family_history" wire:model.debounce.500ms="form.family_history" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"></textarea>
+                                <textarea id="family_history" placeholder="Family History" wire:model.debounce.500ms="form.family_history" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"></textarea>
                                 @error('form.family_history') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
                             </div>
                             <div>
                                 <label for="drug_history" class="block text-sm font-medium text-gray-700">Drug History</label>
-                                <textarea id="drug_history" wire:model.debounce.500ms="form.drug_history" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"></textarea>
+                                <textarea id="drug_history" placeholder="Drug History" wire:model.debounce.500ms="form.drug_history" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"></textarea>
                                 @error('form.drug_history') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
                             </div>
                             <div>
-                                <label for="previous_drug_history" class="block text-sm font-medium text-gray-700">Previous Drug History</label>
-                                <textarea id="previous_drug_history" wire:model.debounce.500ms="form.previous_drug_history" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"></textarea>
-                                @error('form.previous_drug_history') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                <label for="previous_treatment_history" class="block text-sm font-medium text-gray-700">Previous Treatment History</label>
+                                <textarea id="previous_treatment_history" placeholder="Previous Treatment History" wire:model.debounce.500ms="form.previous_treatment_history" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"></textarea>
+                                @error('form.previous_treatment_history') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
                             </div>
                             <div>
                                 <label for="clinical_findings" class="block text-sm font-medium text-gray-700">Clinical Findings</label>
-                                <textarea id="clinical_findings" wire:model.debounce.500ms="form.clinical_findings" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"></textarea>
+                                <textarea id="clinical_findings" placeholder="Clinical Findings" wire:model.debounce.500ms="form.clinical_findings" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"></textarea>
                                 @error('form.clinical_findings') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
                             </div>
                         </div>
                         <!-- Submit and Cancel Buttons -->
                         <div class="flex justify-end space-x-4 mt-6">
-                            <a href="{{ route('patient.list') }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">Cancel</a>
-                            <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">Submit</button>
+
+                            <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">Save Disease </button>
+                            <button type="button" wire:click="switchTab('diagnostic')" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">Next</button>
                         </div>
                     </div>
                 @endif
