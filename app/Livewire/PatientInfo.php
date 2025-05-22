@@ -44,7 +44,7 @@ class PatientInfo extends Component
 
     public function edit($id)
     {
-        session()->flash('message', 'Edit functionality not implemented yet.');
+        session()->flash('message', 'Edit functionality not implemented yet.'.$id);
         // Optionally redirect to edit form: return redirect()->route('patient.edit', $id);
     }
 

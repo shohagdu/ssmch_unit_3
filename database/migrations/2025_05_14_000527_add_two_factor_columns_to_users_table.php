@@ -35,14 +35,19 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      */
-    public function down(): void
+    public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn([
-                'two_factor_secret',
-                'two_factor_recovery_codes',
-                'two_factor_confirmed_at',
-            ]);
+            if (Schema::hasColumn('users', 'two_factor_secret')) {
+                $table->dropColumn('two_factor_secret');
+            }
+            if (Schema::hasColumn('users', 'two_factor_recovery_codes')) {
+                $table->dropColumn('two_factor_recovery_codes');
+            }
+            if (Schema::hasColumn('users', 'two_factor_confirmed_at')) {
+                $table->dropColumn('two_factor_confirmed_at');
+            }
         });
     }
+
 };

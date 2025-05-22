@@ -1,9 +1,17 @@
 <!-- resources/views/livewire/patient-info.blade.php -->
-<div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-12">
+<div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-2">
     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
         <div class="p-6 bg-white border-b border-gray-200">
-            <h2 class="text-2xl font-bold mb-6">Patient List</h2>
-
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <h2 class="text-2xl font-bold mb-6">Patient List</h2>
+                </div>
+                <div class="text-right">
+                    <x-nav-link :href="route('patient.create')" :active="request()->routeIs('patient.create')" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded  inline-block">
+                        {{ __('New Patient') }}
+                    </x-nav-link>
+                </div>
+            </div>
             <!-- Success/Error Message -->
             @if (session()->has('message'))
                 <div class="mb-4 p-4 bg-green-100 text-green-700 rounded">
