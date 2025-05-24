@@ -12,17 +12,18 @@
                 </tr>
                 </thead>
                 <tbody>
+                @if(!empty($rows))
                     @foreach ($rows as $index => $row)
                         <tr>
                             <td class="border p-2">
                                 <input type="hidden" wire:model.defer="rows.{{ $index }}.id" class="w-full border rounded p-1">
-                                <input type="text" wire:model.defer="rows.{{ $index }}.clinical_features" class="w-full border rounded p-1">
+                                <input type="text" wire:model.defer="rows.{{ $index }}.clinical_features" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" placeholder="Enter Clinical Features ">
                             </td>
                             <td class="border p-2">
-                                <textarea wire:model.defer="rows.{{ $index }}.investigation" class="w-full border rounded p-1"></textarea>
+                                <textarea wire:model.defer="rows.{{ $index }}.investigation" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" placeholder="Enter Investigation"></textarea>
                             </td>
                             <td class="border p-2">
-                                <textarea wire:model.defer="rows.{{ $index }}.followup_description" class="w-full border rounded p-1"></textarea>
+                                <textarea wire:model.defer="rows.{{ $index }}.followup_description" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 " placeholder="Follow Up Description"></textarea>
                             </td>
                             <td class="border p-2">
                                 <button type="button"
@@ -33,6 +34,7 @@
                             </td>
                         </tr>
                     @endforeach
+                @endif
                 </tbody>
                 <tfoot>
                 <tr>
@@ -46,33 +48,17 @@
             </table>
 
             <div class="mt-4">
-                <button wire:click="saveFollowUpRecords" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded">
-                    Save All
+                @if (session()->has('success'))
+                    <div class="text-green-600 mt-2">{{ session('success') }}</div>
+                @endif
+            </div>
+            <div class="mt-4">
+                <button wire:click="saveFollowUpRecords" class="bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-8 rounded w-full">
+                    Save Follow Up
                 </button>
             </div>
 
-            @if (session()->has('success'))
-                <div class="text-green-600 mt-2">{{ session('success') }}</div>
-            @endif
+
         </div>
-
-
-
-
-{{--        <div>--}}
-{{--            <label for="date_of_death" class="block text-sm font-medium text-gray-700">Date of Death</label>--}}
-{{--            <input type="date" id="date_of_death" wire:model.debounce.500ms="form.date_of_death" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">--}}
-{{--            @error('form.date_of_death') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror--}}
-{{--        </div>--}}
-{{--        <div>--}}
-{{--            <label for="causes_death" class="block text-sm font-medium text-gray-700">Causes of Death</label>--}}
-{{--            <textarea id="causes_death" wire:model.debounce.500ms="form.causes_death" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"></textarea>--}}
-{{--            @error('form.causes_death') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror--}}
-{{--        </div>--}}
     </div>
-    <!-- Submit and Cancel Buttons -->
-{{--    <div class="flex justify-end space-x-4 mt-6">--}}
-{{--        <a href="{{ route('patient.list') }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">Cancel</a>--}}
-{{--        <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">Submit</button>--}}
-{{--    </div>--}}
 </div>
