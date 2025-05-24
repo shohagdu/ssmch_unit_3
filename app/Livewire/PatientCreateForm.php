@@ -172,8 +172,10 @@ class PatientCreateForm extends Component
 
     public function switchTab($tab)
     {
-        $this->currentTab = $tab;
+            $this->currentTab = $tab;
     }
+
+
 
     public function render()
     {
