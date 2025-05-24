@@ -15,7 +15,7 @@ return new class extends Migration
             $table->bigIncrements('id'); // BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY
             $table->bigInteger('patient_id')->unsigned()->unique(); // Unique, non-auto-incrementing
             $table->string('name', 300)->nullable();
-            $table->tinyInteger('age')->nullable();
+            $table->string('age',100)->nullable();
             $table->string('gender')->comment('1=Male, 2=Female, 3=Other')->nullable();
             $table->integer('district_id')->nullable();
             $table->text('address')->nullable();

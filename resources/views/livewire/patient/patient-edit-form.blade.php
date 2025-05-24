@@ -23,11 +23,7 @@
             <!-- Inline Tabs Navigation -->
             <div class="mb-6">
                 @php
-                    if(empty($updateId)){
-                        $disabledTabs = ['hospital','patient_diseases','investigation', 'treatment_info','follow_up'];
-                    }else{
-                        $disabledTabs = [];
-                    }
+                    $disabledTabs = [];
                 @endphp
 
                 <ul class="flex flex-wrap border-b">

@@ -15,24 +15,24 @@ class PatientInfo extends Component
         'confirmDelete' => 'delete',
     ];
 
-    public function initiateDelete($id)
+    public function     initiateDelete($id)
     {
-//        if ($id) {
-//           // $patient->delete();
-//            patient::find($id)->delete();
-//            session()->flash('message', 'Patient deleted successfully!');
-//        } else {
-//            session()->flash('error', 'Patient not found.');
-//        }
+        if ($id) {
+           // $patient->delete();
+            patient::find($id)->delete();
+            session()->flash('message', 'Patient deleted successfully!');
+        } else {
+            session()->flash('error', 'Patient not found.');
+        }
 
-        $this->patientIdToDelete = $id;
+        //$this->patientIdToDelete = $id;
         $this->dispatch('showDeleteConfirmation');
     }
 
     public function delete()
     {
         $patient = Patient::find($this->patientIdToDelete);
-        dd($patient);
+
         if ($patient) {
             $patient->delete();
             session()->flash('message', 'Patient deleted successfully!');
@@ -42,10 +42,10 @@ class PatientInfo extends Component
         $this->patientIdToDelete = null;
     }
 
-    public function edit($id)
+    public function editPatient($id)
     {
-        session()->flash('message', 'Edit functionality not implemented yet.'.$id);
-        // Optionally redirect to edit form: return redirect()->route('patient.edit', $id);
+        //session()->flash('message', 'Edit functionality not implemented yet.'.$id);
+          return redirect()->route('patient.edit', $id);
     }
 
     public function render()

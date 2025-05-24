@@ -4,21 +4,21 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
                 <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-                <input type="text" id="name" wire:model.debounce.500ms="form.name" placeholder="Enter Patient Name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                <input type="text" id="name" wire:model.debounce.500ms="form.name" placeholder="Enter Patient Name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" value="{{ !empty($patient->name)?$patient->name:'' }}">
                 @error('form.name') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
             </div>
             <div>
                 <label for="age" class="block text-sm font-medium text-gray-700">Age</label>
-                <input type="text" id="age" wire:model.debounce.500ms="form.age" placeholder="Enter Age Exp 20" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                <input type="text" id="age" wire:model.debounce.500ms="form.age" placeholder="Enter Age Exp 20" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" value="{{ !empty($patient->age)?$patient->age:'' }}">
                 @error('form.age') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
             </div>
             <div>
                 <label for="gender" class="block text-sm font-medium text-gray-700">Gender</label>
                 <select id="gender" wire:model="form.gender" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                     <option value="">Select Gender</option>
-                    <option value="1">Male</option>
-                    <option value="2">Female</option>
-                    <option value="3">Other</option>
+                    <option value="1" >Male</option>
+                    <option value="2" >Female</option>
+                    <option value="3" >Other</option>
                 </select>
                 @error('form.gender') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
             </div>
@@ -27,7 +27,7 @@
                 <select id="religion" wire:model="form.religion" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                     <option value="">Select Religion</option>
                     @foreach($religions ?? [] as $key => $religion)
-                        <option value="{{ $key }}">{{ $religion }}</option>
+                        <option value="{{ $key }}" >{{ $religion }}</option>
                     @endforeach
                 </select>
                 @error('form.religion') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
@@ -37,7 +37,7 @@
                 <select id="occupation" wire:model="form.occupation" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                     <option value="">Select Occupation</option>
                     @foreach($occupations ?? [] as $key => $occupation)
-                        <option value="{{ $key }}">{{ $occupation }}</option>
+                        <option value="{{ $key }}" >{{ $occupation }}</option>
                     @endforeach
                 </select>
                 @error('form.occupation') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
@@ -60,7 +60,7 @@
                 <select id="monthly_income" wire:model="form.monthly_income" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                     <option value="">Select Monthly Income</option>
                     @foreach($monthlyIncomes ?? [] as $key => $monthlyIncome)
-                        <option value="{{ $key }}">{{ $monthlyIncome }}</option>
+                        <option value="{{ $key }}" > {{ $monthlyIncome }}</option>
                     @endforeach
                 </select>
                 @error('form.monthly_income') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
@@ -70,7 +70,7 @@
                 <select id="district_id" wire:model="form.district_id" class="select2 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                     <option value="">Select District</option>
                     @foreach($districts ?? [] as $key => $district)
-                        <option value="{{ $key }}">{{ $district }}</option>
+                        <option value="{{ $key }}" >{{ $district }}</option>
                     @endforeach
                 </select>
                 @error('form.district_id') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
@@ -79,14 +79,14 @@
         <div class="grid grid-cols-1 md:grid-cols-1 gap-4 my-4">
             <div>
                 <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
-                <textarea id="address" wire:model.debounce.500ms="form.address" placeholder="Enter Address" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"></textarea>
+                <textarea id="address" wire:model.debounce.500ms="form.address" placeholder="Enter Address" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">{{ !empty($patient->address)?$patient->address:'' }}</textarea>
                 @error('form.address') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
             </div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
                 <label for="contact_number" class="block text-sm font-medium text-gray-700">Contact Number</label>
-                <input type="text" id="contact_number" placeholder="Enter Conact Number" wire:model.debounce.500ms="form.contact_number" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                <input type="text" id="contact_number" placeholder="Enter Conact Number" wire:model.debounce.500ms="form.contact_number" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" value="{{ !empty($patient->pt_contact_number)?$patient->pt_contact_number:'' }}">
                 @error('form.contact_number') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
             </div>
             <div>
@@ -94,7 +94,7 @@
                 <select id="blood_group" wire:model="form.blood_group" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                     <option value="">Select Blood Group</option>
                     @foreach($bloodGroups ?? [] as $key => $bloodGroup)
-                        <option value="{{ $key }}">{{ $bloodGroup }}</option>
+                        <option value="{{ $key }}" {{ !empty($patient->blood_group) && $patient->blood_group==$key ?'selected':'' }}>{{ $bloodGroup }}</option>
                     @endforeach
                 </select>
 
@@ -103,6 +103,7 @@
         </div>
         <!-- Submit and Cancel Buttons -->
         <div class="flex justify-end space-x-4 mt-6">
+
             <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded">Submit (Personal)</button>
             <a href="{{ route('patient.list') }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">Cancel</a>
         </div>

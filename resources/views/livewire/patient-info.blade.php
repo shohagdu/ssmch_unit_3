@@ -37,14 +37,17 @@
                     </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
+                    @php
+                        $i=1;
+                    @endphp
                     @foreach ($patients as $row)
                         <tr>
-                            <td class="border px-4 py-2">{{ $row->id }}</td>
+                            <td class="border px-4 py-2">{{ $i++ }}</td>
                             <td class="border px-4 py-2">{{ $row->patient_id }}</td>
                             <td class="border px-4 py-2">{{ $row->name }}</td>
                             <td class="border px-4 py-2">{{ $row->pt_contact_number }}</td>
                             <td class="border px-4 py-2">
-                                <button wire:click="edit({{ $row->id }})" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit</button>
+                                <button wire:click="editPatient({{ $row->id }})" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit</button>
                                 <button wire:click="initiateDelete({{ $row->id }})" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Delete</button>
                             </td>
                         </tr>

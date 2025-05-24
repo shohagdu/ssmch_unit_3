@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('patient_follow_histories', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('patient_id')->nullable();
             $table->text('clinical_features')->nullable();
             $table->text('investigation')->nullable();
             $table->text('followup_description')->nullable();
