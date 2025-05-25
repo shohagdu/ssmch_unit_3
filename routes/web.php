@@ -6,6 +6,7 @@ use App\Livewire\Posts;
 use App\Livewire\PatientInfo;
 use App\Livewire\PatientCreateForm;
 use App\Livewire\PatientEditForm;
+use App\Livewire\PatientView;
 
 Route::get('/', function () {
 //    return view('welcome');
@@ -24,4 +25,5 @@ Route::middleware([
 Route::get('posts', Posts::class)->middleware('auth');
 Route::get('patient_infos', PatientInfo::class)->middleware('auth')->name('patient.list');
 Route::get('/patient/create', PatientCreateForm::class)->middleware(['auth'])->name('patient.create');
+Route::get('/patient/view/{id}', PatientView::class)->middleware(['auth'])->name('patient.view');
 Route::get('/patient/edit/{id}', PatientEditForm::class)->middleware(['auth'])->name('patient.edit');

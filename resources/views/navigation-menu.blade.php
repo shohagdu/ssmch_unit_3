@@ -15,6 +15,66 @@
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link href="{{ route('patient.list') }}" >
+                        {{ __('Patient Record') }}
+                    </x-nav-link>
+                    <x-dropdown >
+                        <x-slot name="trigger">
+                            <span class="inline-flex rounded-md">
+                                <button type="button" class="inline-flex items-center px-3 py-6 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition ease-in-out duration-150">
+                                    Settings
+                                    <svg class="ms-2 -me-0.5 size-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                    </svg>
+                                </button>
+                            </span>
+                        </x-slot>
+
+                        <x-slot name="content">
+
+                            <div class="border-t border-gray-200"></div>
+                            <x-dropdown-link href="#">
+                                {{ __('Diagnosis') }}
+                            </x-dropdown-link>
+                            <div class="border-t border-gray-200"></div>
+                            <x-dropdown-link href="#">
+                                {{ __('Chief Complaints') }}
+                            </x-dropdown-link>
+                            <div class="border-t border-gray-200"></div>
+                            <x-dropdown-link href="#">
+                                {{ __('Surgeon Records') }}
+                            </x-dropdown-link>
+                            <div class="border-t border-gray-200"></div>
+                            <x-dropdown-link href="#">
+                                {{ __('Surgeon Assistant Record') }}
+                            </x-dropdown-link>
+                            <div class="border-t border-gray-200"></div>
+                            <x-dropdown-link href="#">
+                                {{ __('Name of Operation Record') }}
+                            </x-dropdown-link>
+                            <div class="border-t border-gray-200"></div>
+                            <x-dropdown-link href="#">
+                                {{ __('Occupation') }}
+                            </x-dropdown-link>
+                            <div class="border-t border-gray-200"></div>
+                            <x-dropdown-link href="#">
+                                {{ __('Monthly Income') }}
+                            </x-dropdown-link>
+                            <div class="border-t border-gray-200"></div>
+                            <x-dropdown-link href="#">
+                                {{ __('Education Status') }}
+                            </x-dropdown-link>
+
+
+
+
+
+
+                        </x-slot>
+                    </x-dropdown>
+
+
+
                 </div>
             </div>
 

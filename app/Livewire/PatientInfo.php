@@ -2,6 +2,9 @@
 
 namespace App\Livewire;
 
+use App\Models\AllSetting;
+use App\Models\District;
+use Carbon\Carbon;
 use Livewire\Component;
 use App\Models\Patient;
 use Livewire\WithPagination;
@@ -46,6 +49,11 @@ class PatientInfo extends Component
     {
         //session()->flash('message', 'Edit functionality not implemented yet.'.$id);
           return redirect()->route('patient.edit', $id);
+    }
+
+    public function viewPatient($id)
+    {
+        return redirect()->route('patient.view', $id);
     }
 
     public function render()
