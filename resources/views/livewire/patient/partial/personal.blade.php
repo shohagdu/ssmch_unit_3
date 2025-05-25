@@ -4,12 +4,12 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
                 <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-                <input type="text" id="name" wire:model.debounce.500ms="form.name" placeholder="Enter Patient Name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" value="{{ !empty($patient->name)?$patient->name:'' }}">
+                <input type="text" id="name" wire:model.debounce.500ms="form.name" placeholder="Enter Patient Name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                 @error('form.name') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
             </div>
             <div>
                 <label for="age" class="block text-sm font-medium text-gray-700">Age</label>
-                <input type="text" id="age" wire:model.debounce.500ms="form.age" placeholder="Enter Age Exp 20" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" value="{{ !empty($patient->age)?$patient->age:'' }}">
+                <input type="text" id="age" wire:model.debounce.500ms="form.age" placeholder="Enter Age Exp 20" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                 @error('form.age') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
             </div>
             <div>
@@ -79,14 +79,14 @@
         <div class="grid grid-cols-1 md:grid-cols-1 gap-4 my-4">
             <div>
                 <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
-                <textarea id="address" wire:model.debounce.500ms="form.address" placeholder="Enter Address" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">{{ !empty($patient->address)?$patient->address:'' }}</textarea>
+                <textarea id="address" wire:model.debounce.500ms="form.address" placeholder="Enter Address" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"></textarea>
                 @error('form.address') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
             </div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
                 <label for="contact_number" class="block text-sm font-medium text-gray-700">Contact Number</label>
-                <input type="text" id="contact_number" placeholder="Enter Conact Number" wire:model.debounce.500ms="form.contact_number" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" value="{{ !empty($patient->pt_contact_number)?$patient->pt_contact_number:'' }}">
+                <input type="text" id="contact_number" placeholder="Enter Conact Number" wire:model.debounce.500ms="form.contact_number" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" >
                 @error('form.contact_number') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
             </div>
             <div>
@@ -94,7 +94,7 @@
                 <select id="blood_group" wire:model="form.blood_group" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                     <option value="">Select Blood Group</option>
                     @foreach($bloodGroups ?? [] as $key => $bloodGroup)
-                        <option value="{{ $key }}" {{ !empty($patient->blood_group) && $patient->blood_group==$key ?'selected':'' }}>{{ $bloodGroup }}</option>
+                        <option value="{{ $key }}" >{{ $bloodGroup }}</option>
                     @endforeach
                 </select>
 
