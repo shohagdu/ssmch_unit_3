@@ -20,7 +20,8 @@
                 Total Patients
             </h2>
             <div class="text-3xl font-bold text-blue-600">
-                0
+               {{ !empty($totalPatient)?$totalPatient:'0' }}
+
             </div>
         </a>
     </div>
@@ -31,7 +32,7 @@
             <a href="#">Today Patients</a>
         </h2>
         <div class="text-3xl font-bold text-green-600">
-           0
+            {{ !empty($todayPatient)?$todayPatient:'0' }}
         </div>
     </div>
 </div>
