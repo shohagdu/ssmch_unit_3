@@ -28,193 +28,52 @@ class DatabaseSeeder extends Seeder
             DistrictSeeder::class,
         ]);
 
-        // Disable foreign key checks (optional but useful if you have constraints)
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        $settingsData = [
+            // 1 = Religion
+            1 => ['Islam', 'Hindus', 'Buddhists', 'Christianity', 'Other Religions'],
 
-        // Truncate the table
-        DB::table('all_settings')->truncate();
-
-        // Enable foreign key checks again
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-
-        $settings=[
-        // 1= Religion, 2 = Occupations, 3 = Education Status, 4= Monthly Income, 5 =  Blood Group
-            [
-            'title'         => 'Islam',
-            'type'          => 1,
-            'display_order' => 1,
-            'is_active'     => 1
-            ],[
-            'title'         => 'Hindus',
-            'type'          => 1,
-            'display_order' => 2,
-            'is_active'     => 1,
-            ],[
-            'title'         => 'Buddhists',
-            'type'          => 1,
-            'display_order' => 3,
-            'is_active'     => 1,
-            ],[
-            'title'         => 'Christianity',
-            'type'          => 1,
-            'display_order' => 4,
-            'is_active'     => 1,
-            ],[
-            'title'         => 'Other Religions',
-            'type'          => 1,
-            'display_order' => 5,
-            'is_active'     => 1,
-            ],[
-            'title'         => 'Housewife',
-            'type'          => 2,
-            'display_order' => 1,
-            'is_active'     => 1,
-            ],[
-            'title'         => 'Farmer',
-            'type'          => 2,
-            'display_order' => 2,
-            'is_active'     => 1,
-            ],[
-            'title'         => 'Day Labour',
-            'type'          => 2,
-            'display_order' => 3,
-            'is_active'     => 1,
-            ],[
-            'title'         => 'Business',
-            'type'          => 2,
-            'display_order' => 4,
-            'is_active'     => 1,
-            ],[
-            'title'         => 'Student',
-            'type'          => 2,
-            'display_order' => 5,
-            'is_active'     => 1,
-            ],[
-            'title'         => 'Govt. Service',
-            'type'          => 2,
-            'display_order' => 6,
-            'is_active'     => 1,
-            ],[
-            'title'         => 'Private Service',
-            'type'          => 2,
-            'display_order' => 7,
-            'is_active'     => 1,
-            ],[
-            'title'         => 'Others',
-            'type'          => 2,
-            'display_order' => 8,
-            'is_active'     => 1,
-            ],[
-            'title'         => 'Garments Worker',
-            'type'          => 2,
-            'display_order' => 9,
-            'is_active'     => 1,
-            ],[
-            'title'         => 'Journalist',
-            'type'          => 2,
-            'display_order' => 10,
-            'is_active'     => 1,
+            // 2 = Occupation
+            2 => [
+                'Housewife', 'Farmer', 'Day Labour', 'Business', 'Student',
+                'Govt. Service', 'Private Service', 'Others',
+                'Garments Worker', 'Journalist'
             ],
 
-            [
-            'title'         => 'Primary',
-            'type'          => 3,
-            'display_order' => 1,
-            'is_active'     => 1,
-            ],[
-            'title'         => 'Secondary',
-            'type'          => 3,
-            'display_order' => 2,
-            'is_active'     => 1,
-            ],[
-            'title'         => 'SSC',
-            'type'          => 3,
-            'display_order' => 2,
-            'is_active'     => 1,
-            ],[
-            'title'         => 'HSC',
-            'type'          => 3,
-            'display_order' => 2,
-            'is_active'     => 1,
-            ],[
-            'title'         => 'Graduate',
-            'type'          => 3,
-            'display_order' => 2,
-            'is_active'     => 1,
-            ],[
-            'title'         => 'Illiterate ',
-            'type'          => 3,
-            'display_order' => 2,
-            'is_active'     => 1,
-            ],[
-            'title'         => 'Post graduate',
-            'type'          => 3,
-            'display_order' => 2,
-            'is_active'     => 1,
-            ],[
-            'title'         => 'Masters',
-            'type'          => 3,
-            'display_order' => 2,
-            'is_active'     => 1,
+            // 3 = Education Status
+            3 => [
+                'Primary', 'Secondary', 'SSC', 'HSC',
+                'Graduate', 'Illiterate', 'Post graduate', 'Masters'
             ],
 
-            [
-            'title'         => '<5000',
-            'type'          => 4,
-            'display_order' => 1,
-            'is_active'     => 1,
-            ],[
-            'title'         => '>5000',
-            'type'          => 4,
-            'display_order' => 2,
-            'is_active'     => 1,
-            ],
+            // 4 = Monthly Income
+            4 => ['<< 5000', '<< 7000', '<< 10000', '<< 15000', '<< 20000', '>> 20000'],
 
-            [
-            'title'         => 'A+',
-            'type'          => 5,
-            'display_order' => 1,
-            'is_active'     => 1
-            ],[
-            'title'         => 'A-',
-            'type'          => 5,
-            'display_order' => 2,
-            'is_active'     => 1
-            ],[
-            'title'         => 'B+',
-            'type'          => 5,
-            'display_order' => 3,
-            'is_active'     => 1
-            ],[
-            'title'         => 'B-',
-            'type'          => 5,
-            'display_order' => 4,
-            'is_active'     => 1
-            ],[
-            'title'         => 'AB+',
-            'type'          => 5,
-            'display_order' => 5,
-            'is_active'     => 1
-            ],[
-            'title'         => 'AB-',
-            'type'          => 5,
-            'display_order' => 6,
-            'is_active'     => 1
-            ],[
-            'title'         => 'O+',
-            'type'          => 5,
-            'display_order' => 7,
-            'is_active'     => 1
-            ],[
-            'title'         => 'O-',
-            'type'          => 5,
-            'display_order' => 8,
-            'is_active'     => 1
-            ],
+            // 5 = Blood Group
+            5 => ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'],
+
+            // diagnosis
+            6 => ['Lower Abdominal Pain', 'Whole Abdominal Pain', 'Test Infos', 'Test Infos 2'],
+
+            // C/F
+            7 => ['Pain ', 'Body Pain', 'Whole Pain'],
+
+            // Name of Operation
+            8 => ['Major Operation', 'Minor Operation', 'Gastric Operation', 'Other Operation'],
+
+             // Doctor Designation
+            9 => ['Professor', 'Association Professor', 'Assistant Professor', 'Senior Consultant',  'Consultant', 'Doctor', 'Other']
         ];
 
-        foreach ($settings as $setting) {
-            AllSetting::create($setting);
+        // Build and insert settings
+        foreach ($settingsData as $type => $titles) {
+            foreach ($titles as $index => $title) {
+                AllSetting::create([
+                    'title'         => $title,
+                    'type'          => $type,
+                    'display_order' => $index + 1,
+                    'is_active'     => 1
+                ]);
+            }
         }
     }
 }

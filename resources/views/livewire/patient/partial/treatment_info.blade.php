@@ -12,8 +12,14 @@
             @error('form.name_of_surgeon_assistant') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
         </div>
         <div>
-            <label for="name_of_operation" class="block text-sm font-medium text-gray-700">Name of Operation</label>
-            <input type="text" placeholder="Name of Operation" id="name_of_operation" wire:model.debounce.500ms="form.name_of_operation" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+
+            <label for="name_of_operation" class="block text-sm font-medium text-gray-700">Monthly Income</label>
+            <select id="name_of_operation" wire:model="form.name_of_operation" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                <option value="">Select Name of Operation</option>
+                @foreach($nameOfOperations ?? [] as $key => $operationName)
+                    <option value="{{ $key }}" > {{ $operationName }}</option>
+                @endforeach
+            </select>
             @error('form.name_of_operation') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
         </div>
         <div>

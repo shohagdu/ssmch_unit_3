@@ -51,6 +51,9 @@ class PatientEditForm extends Component
         $educations         =   AllSetting::where(['type'=>3,'is_active'=>1])->pluck('title','id');
         $monthlyIncomes     =   AllSetting::where(['type'=>4,'is_active'=>1])->pluck('title','id');
         $bloodGroups        =   AllSetting::where(['type'=>5,'is_active'=>1])->pluck('title','id');
+        $ptDiagonsises      =   AllSetting::where(['type'=>6,'is_active'=>1])->pluck('title','id');
+        $cfRecords          =   AllSetting::where(['type'=>7,'is_active'=>1])->pluck('title','id');
+        $nameOfOperations   =   AllSetting::where(['type'=>8,'is_active'=>1])->pluck('title','id');
         $districts          =   District::where('is_active',1) ->orderBy('name')->pluck('name','id');
 
 
@@ -84,7 +87,10 @@ class PatientEditForm extends Component
             'educations'        =>  $educations,
             'monthlyIncomes'    =>  $monthlyIncomes,
             'bloodGroups'       =>  $bloodGroups,
-            'districts'         =>  $districts
+            'ptDiagonsises'     =>  $ptDiagonsises,
+            'cfRecords'         =>  $cfRecords,
+            'nameOfOperations'  =>  $cfRecords,
+            'districts'         =>  $districts,
         ]);
     }
     public function switchTab($tab)
