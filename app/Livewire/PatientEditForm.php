@@ -77,7 +77,27 @@ class PatientEditForm extends Component
             'bed_no'            =>  $patient->bed_no,
             'admission_date'    =>  $patient->admission_date? Carbon::parse($patient->admission_date)->format('Y-m-d') : null,
             'discharge_date'    =>  $patient->discharge_date ? Carbon::parse($patient->discharge_date)->format('Y-m-d'): null,
+
+            'chief_complaints'   => $patient->chief_complaints??NULL,
+            'present_illness'    => $patient->present_illness??NULL,
+            'past_illness'       => $patient->past_illness??NULL,
+            'comorbidities'      => $patient->comorbidities??NULL,
+            'family_history'     => $patient->family_history??NULL,
+            'drug_history'       => $patient->drug_history??NULL,
+            'previous_treatment_history' => $patient->previous_treatment_history??NULL,
+            'clinical_findings'  => $patient->clinical_findings??NULL,
+
+            'name_of_surgeon'                 => $patient->name_of_surgeon??NULL,
+            'name_of_surgeon_assistant'       => $patient->name_of_surgeon_assistant??NULL,
+            'name_of_operation'               => $patient->name_of_operation??NULL,
+            'date_of_operation'               =>  $patient->date_of_operation? Carbon::parse($patient->date_of_operation)->format('Y-m-d') : null,
+            'name_of_anesthesia'              => $patient->name_of_anesthesia??NULL,
+            'operative_findings'              => $patient->operative_findings??NULL,
+            'date_of_death'                   =>   $patient->date_of_death? Carbon::parse($patient->date_of_death)->format('Y-m-d') : null,
+            'causes_death'                     => $patient->causes_death??NULL
         ];
+
+
 
 
         return view('livewire.patient.patient-edit-form',[
@@ -89,7 +109,7 @@ class PatientEditForm extends Component
             'bloodGroups'       =>  $bloodGroups,
             'ptDiagonsises'     =>  $ptDiagonsises,
             'cfRecords'         =>  $cfRecords,
-            'nameOfOperations'  =>  $cfRecords,
+            'nameOfOperations'  =>  $nameOfOperations,
             'districts'         =>  $districts,
         ]);
     }
@@ -190,6 +210,94 @@ class PatientEditForm extends Component
             return back()->withInput();
         }
     }
+
+    public function submitPatientDiseases()
+    {
+        $validated = $this->validate([
+            'form.chief_complaints'                 => 'required|integer',
+            'form.present_illness'                  => 'nullable|string',
+            'form.past_illness'                     => 'nullable',
+            'form.comorbidities'                    => 'nullable',
+            'form.family_history'                   => 'nullable',
+            'form.drug_history'                     => 'nullable',
+            'form.previous_treatment_history'       => 'nullable',
+            'form.clinical_findings'                => 'required'
+        ], [
+            'form.clinical_findings.required'         => 'Patient chief complaints is required.',
+        ]);
+        DB::beginTransaction();
+        try {
+            $patientInfo = Patient::find($this->id);
+
+            $patientInfo->update([
+                'chief_complaints'    => $validated['form']['chief_complaints']??NULL,
+
+                'present_illness'          => $validated['form']['present_illness']??NULL,
+                'past_illness'            => $validated['form']['past_illness']??NULL,
+                'comorbidities'             => $validated['form']['comorbidities']??NULL,
+                'family_history'             => $validated['form']['family_history']??NULL,
+                'drug_history'             => $validated['form']['drug_history']??NULL,
+                'previous_treatment_history'             => $validated['form']['previous_treatment_history']??NULL,
+                'clinical_findings'             => $validated['form']['clinical_findings']??NULL,
+
+                'updated_ip'         => request()->ip(),
+                'updated_by'         => auth()->id(),
+            ]);
+            DB::commit();
+            session()->flash('success', 'Patient Disease Information
+ saved successfully!');
+            return redirect()->route('patient.edit', ['id' => $this->id, 'tab' => 'patient_diseases']);
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            session()->flash('error', 'Something went wrong while saving the patient data.');
+            return back()->withInput();
+        }
+    }
+    public function submitTreatmentInfo()
+    {
+        $validated = $this->validate([
+            'form.name_of_surgeon'                 => 'required',
+            'form.name_of_surgeon_assistant'       => 'nullable',
+            'form.name_of_operation'               => 'nullable',
+            'form.date_of_operation'               => 'nullable',
+            'form.name_of_anesthesia'              => 'nullable',
+            'form.operative_findings'              => 'nullable',
+            'form.date_of_death'                    => 'nullable',
+            'form.causes_death'                     => 'required'
+        ], [
+            'form.name_of_surgeon.required'         => 'The Name of surgeon is required.',
+        ]);
+        DB::beginTransaction();
+        try {
+            $patientInfo = Patient::find($this->id);
+            $treatmentInfo=[
+                'name_of_surgeon'    => $validated['form']['name_of_surgeon']??NULL,
+                'name_of_surgeon_assistant'     => $validated['form']['name_of_surgeon_assistant']??NULL,
+                'name_of_operation'        => $validated['form']['name_of_operation']??NULL,
+                'date_of_operation'   => date('Y-m-d',strtotime($validated['form']['date_of_operation']))??NULL,
+                'name_of_anesthesia'      => $validated['form']['name_of_anesthesia']??NULL,
+                'operative_findings'        => $validated['form']['operative_findings']??NULL,
+                'date_of_death' =>  date('Y-m-d',strtotime($validated['form']['date_of_death']))??NULL,
+                'causes_death'   => $validated['form']['causes_death']??NULL,
+
+                'updated_ip'         => request()->ip(),
+                'updated_by'         => auth()->id(),
+            ];
+            //dd($treatmentInfo);
+            $patientInfo->update($treatmentInfo);
+            DB::commit();
+            session()->flash('success', 'Patient Disease Information
+ saved successfully!');
+            return redirect()->route('patient.edit', ['id' => $this->id, 'tab' => 'treatment_info']);
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            session()->flash('error', 'Something went wrong while saving the patient data.');
+            return back()->withInput();
+        }
+    }
+
 
     public function addRow()
     {

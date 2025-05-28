@@ -6,7 +6,6 @@
                 <label for="diagnosis" class="block text-sm font-medium text-gray-700">Chief Complaints</label>
                 <select id="chief_complaints"  wire:model="form.chief_complaints" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                     <option value="">Select Chief Complaints</option>
-                    <option value="">Select Name of Operation</option>
                     @foreach($cfRecords ?? [] as $key => $cf)
                         <option value="{{ $key }}" > {{ $cf }}</option>
                     @endforeach
