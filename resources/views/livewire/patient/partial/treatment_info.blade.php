@@ -34,8 +34,8 @@
                 @error('form.name_of_anesthesia') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
             </div>
             <div>
-                <label for="operative_findings" class="block text-sm font-medium text-gray-700">Operative Findings</label>
-                <textarea id="operative_findings" placeholder="Operative Findings" wire:model.debounce.500ms="form.operative_findings" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"></textarea>
+                <label for="operative_findings" class="block text-sm font-medium text-gray-700">Operation Note</label>
+                <textarea id="operative_findings" placeholder="Operation Note" wire:model.debounce.500ms="form.operative_findings" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"></textarea>
                 @error('form.operative_findings') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
             </div>
         </div>

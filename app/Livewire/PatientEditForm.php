@@ -289,7 +289,7 @@ class PatientEditForm extends Component
             DB::commit();
             session()->flash('success', 'Patient Disease Information
  saved successfully!');
-            return redirect()->route('patient.edit', ['id' => $this->id, 'tab' => 'treatment_info']);
+            return redirect()->route('patient.edit', ['id' => $this->id, 'tab' => 'follow_up']);
 
         } catch (\Exception $e) {
             DB::rollBack();

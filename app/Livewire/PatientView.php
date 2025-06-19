@@ -28,6 +28,9 @@ class PatientView extends Component
         $bloodGroups        =   AllSetting::where(['type'=>5,'is_active'=>1])->pluck('title','id');
         $districts          =   District::where('is_active',1) ->orderBy('name')->pluck('name','id');
 
+        $patientFollowUp = PatientFollowHistory::where('patient_id', $this->id)
+            ->get();
+
 
         return view('livewire.patient.view',[
             'patient'           =>  $patient,
@@ -36,7 +39,8 @@ class PatientView extends Component
             'educations'        =>  $educations,
             'monthlyIncomes'    =>  $monthlyIncomes,
             'bloodGroups'       =>  $bloodGroups,
-            'districts'         =>  $districts
+            'districts'         =>  $districts,
+            'folloupRows'       =>  $patientFollowUp,
         ]);
 
         //return view('livewire.patient-view');

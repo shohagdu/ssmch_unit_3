@@ -241,13 +241,14 @@
                                         <thead class="bg-gray-100">
                                         <tr>
                                             <th class="px-6 py-3 text-left text-sm font-medium text-gray-700 border border-gray-300">Clinical Features</th>
+
                                             <th class="px-6 py-3 text-left text-sm font-medium text-gray-700 border border-gray-300">Investigation</th>
                                             <th class="px-6 py-3 text-left text-sm font-medium text-gray-700 border border-gray-300">Follow Up Description</th>
                                         </tr>
                                         </thead>
                                         <tbody class="bg-white divide-y divide-gray-200">
-                                        @if(!empty($rows))
-                                            @foreach ($rows as $index => $row)
+                                        @if(!empty($folloupRows))
+                                            @foreach ($folloupRows as $index => $row)
                                                 <tr>
                                                     <td class="px-6 py-4 text-sm text-gray-900 border border-gray-300">{{ $row->clinical_features ?? 'N/A' }}</td>
                                                     <td class="px-6 py-4 text-sm text-gray-900 border border-gray-300">{{ $row->investigation ?? 'N/A' }}</td>
@@ -316,6 +317,9 @@
                                         <td class="px-2 py-2 text-sm font-medium text-gray-700">HCO3</td>
                                         <td class="px-2 py-2 text-sm text-gray-900">{{ $patient->electrolytes_hco3 ?? 'N/A' }}</td>
                                     </tr>
+                                    <tr>
+                                        <td colspan="2" class="px-2 py-2 text-lg font-medium text-black-700 text-center py-4"></td>
+                                    </tr>
                                     <!-- S. Creatinine -->
                                     <tr>
                                         <td class="px-2 py-2 text-sm font-medium text-gray-700">S. Creatinine</td>
@@ -350,6 +354,14 @@
                                         <td class="px-2 py-2 text-sm font-medium text-gray-700">AST</td>
                                         <td class="px-2 py-2 text-sm text-gray-900">{{ $patient->lft_ast ?? 'N/A' }}</td>
                                     </tr>
+                                    <tr>
+                                        <td class="px-2 py-2 text-sm font-medium text-gray-700">ALP</td>
+                                        <td class="px-2 py-2 text-sm text-gray-900">{{ $patient->lft_alp ?? 'N/A' }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table class="table-auto w-full table-bordered border border-gray-300 my-4">
+                                <tbody class="bg-white divide-y divide-gray-200">
                                     <!-- S. Albumin -->
                                     <tr>
                                         <td class="px-2 py-2 text-sm font-medium text-gray-700">S. Albumin</td>
@@ -365,6 +377,10 @@
                                         <td class="px-2 py-2 text-sm font-medium text-gray-700">S. Amylase</td>
                                         <td class="px-2 py-2 text-sm text-gray-900">{{ $patient->s_amylase ?? 'N/A' }}</td>
                                     </tr>
+                                </tbody>
+                            </table>
+                            <table class="table-auto w-full table-bordered border border-gray-300 my-4">
+                                <tbody class="bg-white divide-y divide-gray-200">
                                     <!-- Blood Glucose -->
                                     <tr>
                                         <td colspan="2" class="px-2 py-2 text-lg font-medium text-black-700 text-center">Blood Glucose</td>
@@ -382,6 +398,10 @@
                                         <td class="px-2 py-2 text-sm text-gray-900">{{ $patient->blood_glucose_2habs ?? 'N/A' }}</td>
                                     </tr>
                                     <!-- Imaging and Other Tests -->
+                                </tbody>
+                            </table>
+                            <table class="table-auto w-full table-bordered border border-gray-300 my-4">
+                                <tbody class="bg-white divide-y divide-gray-200">
                                     <tr>
                                         <td class="px-2 py-2 text-sm font-medium text-gray-700">X-Ray</td>
                                         <td class="px-2 py-2 text-sm text-gray-900">{{ $patient->x_ray ?? 'N/A' }}</td>
